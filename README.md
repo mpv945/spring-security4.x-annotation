@@ -1,4 +1,4 @@
 # Spring MVC Security4.x Annotation
 
-## branch springmvc-annotation
+## branch springmvc-thymeleaf-annotation
 
