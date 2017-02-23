@@ -41,6 +41,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter implements Application
         // Template cache is true by default. Set to false if you want
         // templates to be automatically updated when modified.
         templateResolver.setCacheable(false);
+        templateResolver.setCharacterEncoding("UTF-8");
         return templateResolver;
     }
 
@@ -57,6 +58,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter implements Application
     public ThymeleafViewResolver getViewResolver(){
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
         viewResolver.setTemplateEngine(getTemplateEngine());
+        viewResolver.setCharacterEncoding("UTF-8");
         return viewResolver;
     }
 
