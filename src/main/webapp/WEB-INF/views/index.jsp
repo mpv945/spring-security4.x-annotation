@@ -8,5 +8,6 @@
 </head>
 <body>
 <h2>JSP Page.</h2>
+<h3>支持中文吗</h3>
 </body>
 </html>
