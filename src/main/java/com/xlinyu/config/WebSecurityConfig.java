@@ -13,19 +13,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
+		http
+//			.csrf().disable()
+			.authorizeRequests()
 			.antMatchers("/", "/home").permitAll()
 			// 静态资源(css、js、img)
 	    	.antMatchers("/assets/**").permitAll()
+	    	
 	    	.antMatchers("/account/signin").permitAll()
+	    	.antMatchers("/login").permitAll()
+	    	.antMatchers("/logout").permitAll()
+	    	
 	    	.antMatchers("/users/**").access("hasRole('ROLE_USER')")
 	    	.antMatchers("/hello").access("hasRole('ROLE_ADMIN')")
 	    	.antMatchers("/admin").access("hasRole('ROLE_ADMIN')")
 	    	.anyRequest().authenticated()
 	    .and()
-	    	.formLogin().loginPage("/account/signin").failureUrl("/account/signin")
+//	    	.formLogin() // 默认的登录表单
+//	    	指定登录表单 并使用默认的登录验证方式
+	    	.formLogin().loginPage("/account/signin").loginProcessingUrl("/login")
 	    .and()
-	    	.logout().permitAll();
+	    	.logout().logoutSuccessUrl("/login?logout")	
+	    .and()
+			.exceptionHandling().accessDeniedPage("/account/403");
 		
 	}
 	
