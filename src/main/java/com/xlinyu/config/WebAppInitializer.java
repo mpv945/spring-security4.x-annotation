@@ -1,10 +1,6 @@
 package com.xlinyu.config;
 
-import java.util.EnumSet;
-
-import javax.servlet.DispatcherType;
 import javax.servlet.Filter;
-import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
@@ -20,8 +16,7 @@ public class WebAppInitializer extends
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		//return new Class[] {WebSecurityConfig.class};
-		return null;
+		return new Class[] {WebSecurityConfig.class};
 	}
 
 	@Override
@@ -39,7 +34,6 @@ public class WebAppInitializer extends
 		CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
         characterEncodingFilter.setEncoding("UTF-8");
         characterEncodingFilter.setForceEncoding(true);
-        
 		return new Filter[]{characterEncodingFilter};
 	}
 	
@@ -55,11 +49,6 @@ public class WebAppInitializer extends
 		ServletRegistration.Dynamic dispatcherServlet = servletContext.addServlet("dispatcherServlet", new DispatcherServlet(rootContext));
 		dispatcherServlet.setLoadOnStartup(1);
 		dispatcherServlet.addMapping("/");
-//	    
-//	    FilterRegistration.Dynamic encodingFilter = servletContext.addFilter("characterEncodingFilter", new CharacterEncodingFilter());
-//        encodingFilter.setInitParameter("encoding", "UTF-8");
-//        encodingFilter.setInitParameter("forceEncoding", "true");
-//        encodingFilter.addMappingForUrlPatterns(null, true, "/*");
 	    
 	}
 	
